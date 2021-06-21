@@ -1,10 +1,7 @@
-go-gin-nginx
+# go-gin-nginx
 
-== How to run 
+### How to run 
 
 * Clone the project.
-+
-[source,shell]
-----
-$ docker-compose up -d --build site    
-----
+
+* ```$ docker-compose up -d --build site``` 
