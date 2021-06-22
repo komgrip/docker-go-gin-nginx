@@ -2,17 +2,37 @@ package main
 
 import (
 	"net/http"
+	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
-func main() {
+func goDotEnv(key string) string {
+	// load .env file
+	err := godotenv.Load(".env")
+  
+	if err != nil {
+	  log.Fatalf("Error loading .env file")
+	}
+  
+	return os.Getenv(key)
+  }
 
+func main() {
+	gin.SetMode(gin.DebugMode)
 	r := gin.Default()
 
-	r.GET("/test", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"result" : "hello world !!!",
+			"result" : "Hello World !!!",
+		})
+	})
+
+	r.GET("/maintenance", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"MAINTENANCE" : goDotEnv("MAINTENANCE"),
 		})
 	})
 
