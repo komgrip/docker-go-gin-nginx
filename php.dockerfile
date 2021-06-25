@@ -18,3 +18,14 @@ COPY ./php-ini-overrides.ini /usr/local/etc/php/conf.d
 
 # composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# java
+RUN apk add --no-cache openjdk8 && rm -f /etc/apk/repositories
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk \
+    PATH=$PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin
+
+# jasperstarter 
+COPY ./jasperstarter /app/jasperstarter
+RUN chmod -R 775 /app/jasperstarter
+ENV PATH=$PATH:/app/jasperstarter/bin
+
