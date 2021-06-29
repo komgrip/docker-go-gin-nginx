@@ -13,7 +13,7 @@ $db_connection = [
     'driver' => 'mysql',
     'username' => "test",
     'password' => "123456789",
-    'host' => "192.168.0.102",
+    'host' => "192.168.0.101",
     'database' => "test",
 ];
 
@@ -24,6 +24,15 @@ $options = [
     ],
     'db_connection' => $db_connection,
 ];
+
+// $debug = $jasper->process(
+//     $input,
+//     $targetReportFile,
+//     $options
+// )->output();
+
+// print_r($debug);
+// die();
 
 $jasper->process(
     $input,

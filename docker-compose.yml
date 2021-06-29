@@ -11,7 +11,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./php/src:/php/src
+      - ./php:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
@@ -38,7 +38,7 @@ services:
     container_name: php-service
     restart: always
     volumes:
-      - ./php/src:/php/src
+      - ./php:/var/www/html
     ports:
       - "9000:9000"
     networks:

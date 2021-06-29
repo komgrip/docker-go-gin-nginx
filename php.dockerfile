@@ -1,7 +1,7 @@
 FROM php:7.4-fpm-alpine
 
-RUN mkdir -p /php/src
-WORKDIR /php/src
+RUN mkdir -p /var/www/html
+WORKDIR /var/www/html
 
 RUN docker-php-ext-install pdo pdo_mysql
 
@@ -26,6 +26,6 @@ ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk \
 
 # jasperstarter 
 COPY ./jasperstarter /app/jasperstarter
+RUN chown -R root:root /app/jasperstarter
 RUN chmod -R 775 /app/jasperstarter
 ENV PATH=$PATH:/app/jasperstarter/bin
-
