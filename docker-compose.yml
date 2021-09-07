@@ -17,6 +17,7 @@ services:
     depends_on:
       - go-service
       - php-service
+      - flask-service
     networks:
       - local
 
@@ -41,5 +42,17 @@ services:
       - ./php:/var/www/html
     ports:
       - "9000:9000"
+    networks:
+      - local
+
+  flask-service:
+    build:
+      context: .
+      dockerfile: python.dockerfile
+    container_name: flask-service
+    restart: always
+    ports:
+      - "8001:8001"
+    command: gunicorn -w 1 -b 0.0.0.0:8001 wsgi:server
     networks:
       - local
